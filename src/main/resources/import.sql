@@ -1,0 +1,1 @@
+INSERT INTO TEAM (id, club_name, founder, commission, budget, founded_date) values (1, 'Real Madrid', 'Mark', 10, 1000.2, '2017-09-24' );
