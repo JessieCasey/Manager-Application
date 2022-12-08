@@ -1,5 +1,6 @@
 package com.football.manager.entity.player.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.football.manager.entity.player.Player;
 import com.football.manager.entity.player.service.PlayerService;
@@ -12,25 +13,33 @@ import java.time.LocalDate;
 @SuperBuilder
 @Getter
 @Setter
-public class PlayerRepresentDTO extends PlayerDTO {
+public class PlayerDTO {
 
-    @JsonProperty("clubs_played_count")
-    private int clubsPlayed;
+    private int id;
+    @JsonProperty("first_name")
+    private String firstName;
+    @JsonProperty("last_name")
+    private String lastName;
+    @JsonProperty("months_experience")
+    private int monthsExperience;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private LocalDate birthday;
+    @JsonProperty("arrival_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private LocalDate arrivalDate;
+    @JsonProperty("age")
+    private int age;
+    @JsonProperty("position")
+    private String position;
 
-    @JsonProperty("mother_club_name")
-    private String motherClub;
-
-    public static PlayerRepresentDTO from(Player player) {
+    public static PlayerDTO from(Player player) {
         return builder()
-                .clubsPlayed(player.getClubsPlayed() == null ? 0 : player.getClubsPlayed().size())
-                .motherClub(player.getMotherClub() == null ? "No club" : player.getMotherClub().getClubName())
                 .id(player.getId())
-                .arrivalDate(player.getArrivalDate())
                 .firstName(player.getFirstName())
                 .lastName(player.getLastName())
+                .arrivalDate(player.getArrivalDate())
                 .monthsExperience(player.getMonthsExperience())
                 .age(PlayerService.calculateAge(player.getBirthday(), LocalDate.now()))
-                .birthday(player.getBirthday())
                 .position(player.getPosition().name())
                 .build();
     }

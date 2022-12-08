@@ -116,10 +116,10 @@ public class TeamController {
         try {
             TeamDeletedDTO dto = teamService.deleteTeam(teamId);
 
-            log.info("[DELETE] Request to 'deleteTeam': Team is created");
+            log.info("[DELETE] Request to 'deleteTeam': Team is deleted");
             return ResponseEntity.status(HttpStatus.OK).body(dto);
         } catch (Exception e) {
-            log.error("Error in method 'createTeam': " + e.getMessage());
+            log.error("Error in method 'deleteTeam': " + e.getMessage());
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
         }
     }

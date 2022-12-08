@@ -13,4 +13,7 @@ public interface TeamDAO {
     Team getTeam(int id);
 
     TeamDeletedDTO deleteTeam(int id);
+
+    Team getTeamByClubName(String title);
+
 }

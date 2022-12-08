@@ -13,16 +13,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<?> handleNullReferenceException(EntityNotFoundException ex, WebRequest request) {
-        log.error("[handleNullReferenceException] Null': " + request.getDescription(false));
+        log.error("[handleNullReferenceException]': " + request.getDescription(false));
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
                 .body(new MessageResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage(), request));
     }
 
     @ExceptionHandler
     public ResponseEntity<?> handleUserAlreadyExistException(EntityAlreadyExistException ex, WebRequest request) {
-        log.error("[handleUserAlreadyExistException] Null': " + request.getDescription(false));
+        log.error("[handleUserAlreadyExistException]': " + request.getDescription(false));
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE.value())
                 .body(new MessageResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage(), request));
     }
 
+    @ExceptionHandler
+    public ResponseEntity<?> handlePaymentDeclinedException(PaymentDeclinedException ex, WebRequest request) {
+        log.error("[handlePaymentDeclinedException]: " + request.getDescription(false));
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE.value())
+                .body(new MessageResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage(), request));
+    }
 }

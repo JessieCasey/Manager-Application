@@ -1,6 +1,5 @@
 package com.football.manager.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +20,11 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class AppConfig {
 
-	@Autowired
-	private Environment environment;
+	private final Environment environment;
+
+	public AppConfig(Environment environment) {
+		this.environment = environment;
+	}
 
 	@Bean
 	public HibernateTemplate hibernateTemplate() {

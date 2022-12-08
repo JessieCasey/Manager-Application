@@ -54,6 +54,12 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     @Transactional
+    public Team getByClubName(String title) {
+        return teamDAO.getTeamByClubName(title);
+    }
+
+    @Override
+    @Transactional
     public TeamDeletedDTO deleteTeam(int id) {
         return teamDAO.deleteTeam(id);
     }

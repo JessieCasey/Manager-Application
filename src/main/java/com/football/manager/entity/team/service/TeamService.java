@@ -7,13 +7,15 @@ import com.football.manager.entity.team.dto.TeamUpdateDTO;
 import java.util.List;
 
 public interface TeamService {
-    public List<Team> getTeams();
+    List<Team> getTeams();
 
-    public Team saveTeam(Team team);
+    Team saveTeam(Team team);
 
-    public Team getTeam(int id);
+    Team getTeam(int id);
 
-    public TeamDeletedDTO deleteTeam(int id);
+    Team getByClubName(String title);
+
+    TeamDeletedDTO deleteTeam(int id);
 
     Team updateTeam(TeamUpdateDTO updateDTO);
 

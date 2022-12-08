@@ -15,12 +15,13 @@ public class TeamDeletedDTO {
     @JsonProperty("club_name")
     private String clubName;
     private String founder;
-    @JsonProperty("founded_date")
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonProperty("founded_date")
     private LocalDate foundedDate;
     private float budget;
     @JsonProperty("count_of_players")
-    private int countOfPlayers;
+    private long countOfPlayers;
 
     public static TeamDeletedDTO from(Team team) {
         return builder()
