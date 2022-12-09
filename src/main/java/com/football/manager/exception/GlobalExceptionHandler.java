@@ -21,8 +21,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<?> handleNullReferenceException(EntityNotFoundException ex, WebRequest request) {
         log.error("[handleNullReferenceException]': " + request.getDescription(false));
-        return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
-                .body(new MessageResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage(), request));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value())
+                .body(new MessageResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request));
     }
 
     @ExceptionHandler
