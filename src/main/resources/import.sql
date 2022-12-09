@@ -20,7 +20,6 @@ INSERT INTO PLAYER (id, firstname, lastname, nationality, monthsExperience, birt
 INSERT INTO PLAYER (id, firstname, lastname, nationality, monthsExperience, birthday, arrival_date, position, motherClub_id) VALUES (13, 'Marco', 'Reus', 'Uruguay', 52, '2008-10-16', '2015-11-13', 'FORWARD', 4);
 INSERT INTO PLAYER (id, firstname, lastname, nationality, monthsExperience, birthday, arrival_date, position, motherClub_id) VALUES (14, 'Franck', 'Ribery', 'France', 31, '2002-05-08', '2014-10-03', 'FORWARD', 6);
 
-
 INSERT INTO TEAM_PLAYER (player_id, team_id) VALUES (1, 3);
 INSERT INTO TEAM_PLAYER (player_id, team_id) VALUES (2, 2);
 INSERT INTO TEAM_PLAYER (player_id, team_id) VALUES (3, 5);
@@ -28,6 +27,3 @@ INSERT INTO TEAM_PLAYER (player_id, team_id) VALUES (4, 3);
 INSERT INTO TEAM_PLAYER (player_id, team_id) VALUES (5, 2);
 INSERT INTO TEAM_PLAYER (player_id, team_id) VALUES (6, 1);
 INSERT INTO TEAM_PLAYER (player_id, team_id) VALUES (7, 1);
-
-INSERT INTO BILL (id, commission, created_at, expired_at, price, total_price, from_team_id, player_id, to_team_id) VALUES ('88efad25-4096-4fbf-bd35-53e2c65b8fa0', 9, '2022-12-09 04:24:40.945983', '2023-06-09 04:24:40.945995', 351428, 3514280, 3, 1, 6);
-INSERT INTO TEAM_BILL (team_id, bills_id) VALUES (6, '88efad25-4096-4fbf-bd35-53e2c65b8fa0');

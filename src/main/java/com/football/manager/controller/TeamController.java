@@ -69,13 +69,8 @@ public class TeamController {
 
         Team teamById = teamService.getTeam(teamId);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(teamById.getId())
-                .toUri();
-
         log.info("[GET] Request to 'fetchTeamById': Team is founded with id '" + teamId + "'");
-        return ResponseEntity.created(location).body(TeamRepresentDTO.from(teamById));
+        return ResponseEntity.ok().body(TeamRepresentDTO.from(teamById));
     }
 
     /**

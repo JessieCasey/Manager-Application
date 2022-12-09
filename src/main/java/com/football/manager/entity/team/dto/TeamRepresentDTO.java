@@ -33,6 +33,7 @@ public class TeamRepresentDTO extends TeamDTO {
                 .founder(team.getFounder())
                 .commission(team.getCommission())
                 .foundedDate(team.getFoundedDate())
+                .playersCount(team.getPlayers() != null ? team.getPlayers().size() : 0)
                 .budget(team.getBudget())
                 .players(team.getPlayers() != null ? team.getPlayers().stream().map(PlayerRepresentDTO::from).collect(Collectors.toList()) : new ArrayList<>())
                 .transactions(team.getTransactions() != null ? team.getTransactions().size() : 0)

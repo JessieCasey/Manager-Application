@@ -28,6 +28,7 @@ public class TeamDTO {
                 .id(team.getId())
                 .clubName(team.getClubName())
                 .founder(team.getFounder())
+                .playersCount(team.getPlayers().size())
                 .foundedDate(team.getFoundedDate())
                 .playersCount(team.getPlayers().size())
                 .build();

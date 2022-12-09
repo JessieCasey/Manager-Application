@@ -27,7 +27,8 @@ public class Transaction implements Serializable {
     @Id
     private UUID id;
 
-    private int paid;
+    private int price;
+    private int totalPrice;
     private float commission;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -42,7 +43,8 @@ public class Transaction implements Serializable {
     public static Transaction from(Bill bill) {
         return builder()
                 .id(bill.getId())
-                .paid(bill.getTotalPrice())
+                .price(bill.getPrice())
+                .totalPrice(bill.getTotalPrice())
                 .commission(bill.getCommission())
                 .player(bill.getPlayer())
                 .fromTeam(bill.getFromTeam())

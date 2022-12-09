@@ -71,8 +71,11 @@ public class PlayerDAOImpl implements PlayerDAO {
         if (null != playerToBeDeleted) {
             PlayerDeletedDTO dto = PlayerDeletedDTO.from(playerToBeDeleted);
 
-            Team currentTeam = hibernateTemplate.get(Team.class, getCurrentTeamId(playerToBeDeleted));
-            currentTeam.getPlayers().remove(playerToBeDeleted);
+            int currentTeamId = getCurrentTeamId(playerToBeDeleted);
+            if (currentTeamId >= 0) {
+                Team currentTeam = hibernateTemplate.get(Team.class, currentTeamId);
+                currentTeam.getPlayers().remove(playerToBeDeleted);
+            }
 
             hibernateTemplate.delete(playerToBeDeleted);
             return dto;

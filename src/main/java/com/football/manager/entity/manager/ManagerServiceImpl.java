@@ -44,11 +44,12 @@ public class ManagerServiceImpl implements ManagerService {
         if (player == null)
             throw new EntityNotFoundException("Player is not found with id '" + playerId + "'");
 
-        int size = player.getClubsPlayed().size();
-        Team fromTeam = (size > 0) ? player.getClubsPlayed().get(size - 1) : null;
-        Team toTeam = teamService.getTeam(transferToTeamId);
+        int currentTeamId = PlayerService.getCurrentTeamId(player);
 
-        if (fromTeam != null) {
+        Team fromTeam = null;
+        Team toTeam = teamService.getTeam(transferToTeamId);
+        if (currentTeamId != -1) {
+            fromTeam = teamService.getTeam(currentTeamId);
             if (fromTeam.getClubName().equals(toTeam.getClubName()))
                 throw new IllegalArgumentException("Player is already in the team '" + toTeam.getClubName() + "'");
         }
@@ -61,7 +62,6 @@ public class ManagerServiceImpl implements ManagerService {
         billService.saveBill(billToSend);
 
         sendBillTo(billToSend, toTeam);
-
         return BillRepresentDTO.from(billToSend);
     }
 
@@ -82,8 +82,10 @@ public class ManagerServiceImpl implements ManagerService {
             toTeam.setBudget(toTeam.getBudget() - bill.getTotalPrice());
             toTeam.getPlayers().add(player);
 
-            fromTeam.getPlayers().remove(player);
-            fromTeam.setBudget(fromTeam.getBudget() + bill.getTotalPrice());
+            if (fromTeam != null) {
+                fromTeam.getPlayers().remove(player);
+                fromTeam.setBudget(fromTeam.getBudget() + bill.getTotalPrice());
+            }
 
             toTeam.getBills().remove(bill);
             Transaction transaction = transactionService.saveTransaction(Transaction.from(bill));

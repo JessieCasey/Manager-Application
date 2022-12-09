@@ -20,7 +20,9 @@ public class BillRepresentDTO {
 
     private UUID id;
     private int price;
-    private float commission;
+
+    private String commissionPercentage;
+    private int commission;
     private int totalPrice;
 
     private LocalDateTime createdAt;
@@ -34,12 +36,13 @@ public class BillRepresentDTO {
         return builder()
                 .id(bill.getId())
                 .price(bill.getPrice())
-                .commission(bill.getCommission())
+                .commissionPercentage(bill.getCommission() + "%")
+                .commission((int)(bill.getPrice()*(bill.getCommission()/100.0f)))
                 .totalPrice(bill.getTotalPrice())
                 .createdAt(bill.getCreatedAt())
                 .expiredAt(bill.getExpiredAt())
                 .player(PlayerRepresentDTO.from(bill.getPlayer()))
-                .fromTeam(TeamDTO.from(bill.getFromTeam()))
+                .fromTeam(bill.getFromTeam() != null ? TeamDTO.from(bill.getFromTeam()) : null)
                 .toTeam(TeamDTO.from(bill.getToTeam()))
                 .build();
     }

@@ -70,13 +70,8 @@ public class PlayerController {
 
         Player playerById = playerService.getPlayer(playerId);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(playerById.getId())
-                .toUri();
-
         log.info("[GET] Request to 'fetchPLayerById': Player is founded with id '" + playerById + "'");
-        return ResponseEntity.created(location).body(PlayerDetailedDTO.from(playerById));
+        return ResponseEntity.ok().body(PlayerDetailedDTO.from(playerById));
     }
 
     /**

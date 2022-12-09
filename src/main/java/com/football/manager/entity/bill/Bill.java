@@ -51,7 +51,7 @@ public class Bill {
                 .id(UUID.randomUUID())
                 .price(priceOfPlayer)
                 .commission(from.getCommission())
-                .totalPrice((int) (priceOfPlayer + (from.getCommission() * priceOfPlayer)))
+                .totalPrice(priceOfPlayer + (int)(priceOfPlayer*(from.getCommission()/100.0f)))
                 .createdAt(LocalDateTime.now())
                 .expiredAt(LocalDateTime.now().plusMonths(6))
                 .player(player)

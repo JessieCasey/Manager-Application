@@ -32,8 +32,9 @@ public interface PlayerService {
     }
 
     static int getCurrentTeamId(Player player) {
-        return player.getClubsPlayed()
-                .get(player.getClubsPlayed().size() != 0 ?
-                        player.getClubsPlayed().size() - 1 : 0).getId();
+        if (player.getClubsPlayed().size() > 0)
+            return player.getClubsPlayed().get(player.getClubsPlayed().size() - 1).getId();
+        else
+            return -1;
     }
 }
