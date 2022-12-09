@@ -51,14 +51,16 @@ so you could avoid creating players and teams to work with.
 `import.sql` includes all the data you need
 
 ### How to transfer player
-Firstly, you need to make a bill. (I'll transfer player with id '3' to the team id with '2')
+Firstly, you need to make a bill. (I'll transfer player with id '3' to the team with id '2')
 
-To make bill make a request to: `localhost:8080/api/manager?playerId=3&transferToTeamId=2`
+To create a bill make a request to: `localhost:8080/api/manager?playerId=3&transferToTeamId=2`
 
 ![alt text](./imgs/make_and_send_bill.png)
 
-Then we need to make a payment in order to do it you need to copy id of the bill and insert it into request param 'billId'.
+Then we need to make a payment in order to do it you need to get id of the bill and insert it into request param 'billId'.
 `"id": "d605321f-60bc-4a74-a7b7-e9ddc636af03",`
+
+`localhost:8080/api/manager/?billId=d605321f-60bc-4a74-a7b7-e9ddc636af03`
 
 ![alt text](./imgs/pay_bill.png)
 
