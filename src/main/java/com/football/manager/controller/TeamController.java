@@ -30,8 +30,9 @@ public class TeamController {
     private final TeamService teamService;
 
     /**
-     * Constructor for {@link TeamController}.
-     * @param teamService  {@link TeamService}
+     * Constructor for {@link TeamController}
+     *
+     * @param teamService {@link TeamService}
      */
     @Autowired
     public TeamController(TeamService teamService) {
@@ -40,82 +41,72 @@ public class TeamController {
 
     /**
      * Method that fetching teams
+     *
      * @return List<TeamRepresentDTO> object in case of success. {@link List<TeamRepresentDTO>}
      */
     @GetMapping
     public ResponseEntity<?> fetchTeams(WebRequest request) {
         log.info("[GET] Request to 'fetchTeams'");
-        try {
-            List<Team> teams = teamService.getTeams();
 
-            log.info("[GET] Request to 'fetchTeams': Team is created");
-            if (teams.size() != 0) {
-                return ResponseEntity.ok().body(teams.stream().map(TeamRepresentDTO::from));
-            } else {
-                return ResponseEntity.ok().body(new MessageResponse(200, "There are no teams in database", request));
-            }
-        } catch (Exception e) {
-            log.error("Error in method 'fetchTeams': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
+        List<Team> teams = teamService.getTeams();
+
+        log.info("[GET] Request to 'fetchTeams': Team is created");
+        if (teams.size() != 0) {
+            return ResponseEntity.ok().body(teams.stream().map(TeamRepresentDTO::from));
+        } else {
+            return ResponseEntity.ok().body(new MessageResponse(200, "There are no teams in database", request));
         }
     }
 
     /**
      * Method that fetching team by ID
+     *
      * @return TeamRepresentDTO object in case of success. {@link TeamRepresentDTO}
      */
     @GetMapping("/{teamId}")
     public ResponseEntity<?> fetchTeamById(@PathVariable int teamId, WebRequest request) {
         log.info("[GET] Request to 'fetchTeamById'");
-        try {
-            Team teamById = teamService.getTeam(teamId);
 
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(teamById.getId())
-                    .toUri();
+        Team teamById = teamService.getTeam(teamId);
 
-            log.info("[GET] Request to 'fetchTeamById': Team is founded with id '" + teamId + "'");
-            return ResponseEntity.created(location).body(TeamRepresentDTO.from(teamById));
-        } catch (Exception e) {
-            log.error("Error in method 'fetchTeamById': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
-        }
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(teamById.getId())
+                .toUri();
+
+        log.info("[GET] Request to 'fetchTeamById': Team is founded with id '" + teamId + "'");
+        return ResponseEntity.created(location).body(TeamRepresentDTO.from(teamById));
     }
 
     /**
      * Method that creating team by TeamCreateDTO {@link TeamCreateDTO}
+     *
      * @return TeamRepresentDTO object in case of success
      */
     @PostMapping
     public ResponseEntity<?> createTeam(@RequestBody TeamCreateDTO teamDTO, WebRequest request) {
         log.info("[POST] Request to 'createTeam'");
-        try {
-            Team team = teamService.saveTeam(Team.from(teamDTO));
+        Team team = teamService.saveTeam(Team.from(teamDTO));
 
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(team.getId())
-                    .toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(team.getId())
+                .toUri();
 
-            log.info("[POST] Request to 'createTeam': Team is created");
-            return ResponseEntity.created(location).body(TeamRepresentDTO.from(team));
-        } catch (Exception e) {
-            log.error("Error in method 'createTeam': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
-        }
+        log.info("[POST] Request to 'createTeam': Team is created");
+        return ResponseEntity.created(location).body(TeamRepresentDTO.from(team));
     }
 
     /**
      * Method that updating team by PlayerCreateDTO {@link TeamUpdateDTO}
-     * @param teamId id of the team to be updated
+     *
+     * @param teamId    id of the team to be updated
      * @param updateDTO DTO to transfer data {@link TeamUpdateDTO}
      * @return TeamRepresentDTO object in case of success
      */
     @PutMapping("/{teamId}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> updateTeam(@PathVariable int teamId, @RequestBody TeamUpdateDTO updateDTO,
-                                        WebRequest request) {
+    public ResponseEntity<?> updateTeam(@PathVariable int teamId, @RequestBody TeamUpdateDTO updateDTO, WebRequest request) {
         log.info("[PUT] Request to 'updateTeam'");
         try {
             updateDTO.setId(teamId);
@@ -136,20 +127,17 @@ public class TeamController {
 
     /**
      * Method that deleting team
+     *
      * @param teamId id of the team to be updated
      * @return TeamDeletedDTO object in case of success
      */
     @DeleteMapping("/{teamId}")
-    public ResponseEntity<?> deleteTeam(@PathVariable int teamId, WebRequest request) {
+    public ResponseEntity<?> deleteTeam(@PathVariable int teamId) {
         log.info("[DELETE] Request to 'deleteTeam'");
-        try {
-            TeamDeletedDTO dto = teamService.deleteTeam(teamId);
+        TeamDeletedDTO dto = teamService.deleteTeam(teamId);
 
-            log.info("[DELETE] Request to 'deleteTeam': Team is deleted");
-            return ResponseEntity.status(HttpStatus.OK).body(dto);
-        } catch (Exception e) {
-            log.error("Error in method 'deleteTeam': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
-        }
+        log.info("[DELETE] Request to 'deleteTeam': Team is deleted");
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
+
     }
 }

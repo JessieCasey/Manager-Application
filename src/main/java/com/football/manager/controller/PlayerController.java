@@ -31,8 +31,9 @@ public class PlayerController {
 
     /**
      * Constructor for {@link PlayerController}.
-     * @param playerService  {@link PlayerService}
-     * @param teamService      {@link TeamService}
+     *
+     * @param playerService {@link PlayerService}
+     * @param teamService   {@link TeamService}
      */
     @Autowired
     public PlayerController(PlayerService playerService, TeamService teamService) {
@@ -42,82 +43,73 @@ public class PlayerController {
 
     /**
      * Method that fetching players
+     *
      * @return List<PlayerRepresentDTO> object in case of success. {@link List<PlayerRepresentDTO>}
      */
     @GetMapping
     public ResponseEntity<?> fetchPlayers(WebRequest request) {
         log.info("[GET] Request to 'fetchPlayers'");
-        try {
-            List<Player> players = playerService.getPlayers();
-            if (players.size() != 0) {
-                return ResponseEntity.ok().body(players.stream().map(PlayerRepresentDTO::from));
-            } else {
-                return ResponseEntity.ok().body(new MessageResponse(200, "There are no players in database", request));
-            }
-        } catch (Exception e) {
-            log.error("Error in method 'fetchPlayers': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
+
+        List<Player> players = playerService.getPlayers();
+        if (players.size() != 0) {
+            return ResponseEntity.ok().body(players.stream().map(PlayerRepresentDTO::from));
+        } else {
+            return ResponseEntity.ok().body(new MessageResponse(200, "There are no players in database", request));
         }
     }
 
     /**
      * Method that fetching player by ID
+     *
      * @return PlayerDetailedDTO object in case of success. {@link PlayerDetailedDTO}
      * PlayerDetailedDTO contains more details than PlayerRepresentDTO
      */
     @GetMapping("/{playerId}")
-    public ResponseEntity<?> fetchPLayerById(@PathVariable int playerId, WebRequest request) {
+    public ResponseEntity<?> fetchPLayerById(@PathVariable int playerId) {
         log.info("[GET] Request to 'fetchPLayerById'");
-        try {
-            Player playerById = playerService.getPlayer(playerId);
 
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(playerById.getId())
-                    .toUri();
+        Player playerById = playerService.getPlayer(playerId);
 
-            log.info("[GET] Request to 'fetchPLayerById': Player is founded with id '" + playerById + "'");
-            return ResponseEntity.created(location).body(PlayerDetailedDTO.from(playerById));
-        } catch (Exception e) {
-            log.error("Error in method 'fetchPLayerById': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
-        }
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(playerById.getId())
+                .toUri();
+
+        log.info("[GET] Request to 'fetchPLayerById': Player is founded with id '" + playerById + "'");
+        return ResponseEntity.created(location).body(PlayerDetailedDTO.from(playerById));
     }
 
     /**
      * Method that creating player by PlayerCreateDTO {@link PlayerCreateDTO}
+     *
      * @return PlayerRepresentDTO object in case of success
      */
     @PostMapping
-    public ResponseEntity<?> createPlayer(@RequestBody PlayerCreateDTO playerDTO, WebRequest request) {
+    public ResponseEntity<?> createPlayer(@RequestBody PlayerCreateDTO playerDTO) {
         log.info("[POST] Request to 'createPlayer'");
-        try {
-            Team team = teamService.getByClubName(playerDTO.getCurrentTeamName());
-            Player player = playerService.savePlayer(Player.from(playerDTO, team));
 
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                    .path("/{id}")
-                    .buildAndExpand(player.getId())
-                    .toUri();
+        Team team = teamService.getByClubName(playerDTO.getCurrentTeamName());
+        Player player = playerService.savePlayer(Player.from(playerDTO, team));
 
-            log.info("[POST] Request to 'createPlayer': Player is created");
-            return ResponseEntity.created(location).body(PlayerRepresentDTO.from(player));
-        } catch (Exception e) {
-            log.error("Error in method 'createPlayer': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
-        }
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(player.getId())
+                .toUri();
+
+        log.info("[POST] Request to 'createPlayer': Player is created");
+        return ResponseEntity.created(location).body(PlayerRepresentDTO.from(player));
     }
 
     /**
      * Method that updating player by PlayerCreateDTO {@link PlayerUpdateDTO}
-     * @param playerID id of the player to be updated
+     *
+     * @param playerID  id of the player to be updated
      * @param updateDTO DTO to transfer data {@link PlayerUpdateDTO}
      * @return PlayerRepresentDTO object in case of success
      */
     @PutMapping("/{playerID}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> updatePlayer(@PathVariable int playerID, @RequestBody PlayerUpdateDTO updateDTO,
-                                          WebRequest request) {
+    public ResponseEntity<?> updatePlayer(@PathVariable int playerID, @RequestBody PlayerUpdateDTO updateDTO, WebRequest request) {
         log.info("[PUT] Request to 'updatePlayer'");
         try {
             updateDTO.setId(playerID);
@@ -131,27 +123,25 @@ public class PlayerController {
             log.info("[PUT] Request to 'updatePlayer': PLayer is updated");
             return ResponseEntity.created(location).body(PlayerRepresentDTO.from(player));
         } catch (Exception e) {
-            log.error("Error in method 'updatePlayer': " + e.getMessage());
+            log.error("Error in method 'updateTeam': " + e.getMessage());
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
         }
     }
 
     /**
      * Method that deleting player
+     *
      * @param playerID id of the player to be updated
      * @return PlayerDeletedDTO object in case of success
      */
     @DeleteMapping("/{playerID}")
-    public ResponseEntity<?> deletePlayer(@PathVariable int playerID, WebRequest request) {
+    public ResponseEntity<?> deletePlayer(@PathVariable int playerID) {
         log.info("[DELETE] Request to 'deletePlayer'");
-        try {
-            PlayerDeletedDTO dto = playerService.deletePlayer(playerID);
 
-            log.info("[DELETE] Request to 'deletePlayer': Player is deleted");
-            return ResponseEntity.status(HttpStatus.OK).body(dto);
-        } catch (Exception e) {
-            log.error("Error in method 'deletePlayer': " + e.getMessage());
-            return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
-        }
+        PlayerDeletedDTO dto = playerService.deletePlayer(playerID);
+
+        log.info("[DELETE] Request to 'deletePlayer': Player is deleted");
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
+
     }
 }
