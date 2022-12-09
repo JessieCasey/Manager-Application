@@ -2,7 +2,7 @@ package com.football.manager.entity.bill.dao;
 
 import com.football.manager.entity.bill.Bill;
 import com.football.manager.entity.bill.BillDeletedDTO;
-import com.football.manager.exception.EntityNotFoundException;
+import com.football.manager.exception.cover.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;

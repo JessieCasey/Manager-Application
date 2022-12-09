@@ -1,5 +1,8 @@
 package com.football.manager.exception;
 
+import com.football.manager.exception.cover.EntityAlreadyExistException;
+import com.football.manager.exception.cover.EntityNotFoundException;
+import com.football.manager.exception.cover.PaymentDeclinedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

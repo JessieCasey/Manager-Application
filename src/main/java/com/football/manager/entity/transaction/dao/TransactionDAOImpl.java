@@ -1,7 +1,7 @@
 package com.football.manager.entity.transaction.dao;
 
 import com.football.manager.entity.transaction.Transaction;
-import com.football.manager.exception.EntityNotFoundException;
+import com.football.manager.exception.cover.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;

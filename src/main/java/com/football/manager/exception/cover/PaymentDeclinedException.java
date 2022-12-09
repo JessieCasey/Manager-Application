@@ -1,4 +1,6 @@
-package com.football.manager.exception;
+package com.football.manager.exception.cover;
+
+import com.football.manager.exception.GlobalExceptionHandler;
 
 /**
  * The PaymentDeclinedException exception extends RuntimeException.
