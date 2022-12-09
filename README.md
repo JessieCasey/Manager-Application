@@ -32,6 +32,17 @@ hibernate.show_sql=false
 hibernate.format_sql=true
 hibernate.hbm2ddl.auto=create
 ```
+### Run it 🚀
+
+That's all, you need to run Application class in your IDE.
+
+```java
+
+@SpringBootApplication
+public class ManagerApplication {
+    //...
+}
+```
 
 ### Database
 
