@@ -35,4 +35,18 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE.value())
                 .body(new MessageResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage(), request));
     }
+
+    @ExceptionHandler
+    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
+        log.error("[handlePaymentDeclinedException]: " + request.getDescription(false));
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE.value())
+                .body(new MessageResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage(), request));
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<?> handleException(Exception ex, WebRequest request) {
+        log.error("[handlePaymentDeclinedException]: " + request.getDescription(false));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND.value())
+                .body(new MessageResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage(), request));
+    }
 }
