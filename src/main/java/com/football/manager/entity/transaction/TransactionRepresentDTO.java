@@ -1,5 +1,6 @@
 package com.football.manager.entity.transaction;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.football.manager.entity.bill.Bill;
 import com.football.manager.entity.player.dto.PlayerRepresentDTO;
 import com.football.manager.entity.team.dto.TeamDTO;
@@ -23,6 +24,7 @@ public class TransactionRepresentDTO {
 
     private String commissionPercentage;
     private int commission;
+    @JsonProperty("price_player")
     private int price;
     private int totalPrice;
     private PlayerRepresentDTO player;
@@ -51,6 +53,7 @@ public class TransactionRepresentDTO {
                 .id(transaction.getId())
                 .commissionPercentage(transaction.getCommission() + "%")
                 .commission((int)(transaction.getPrice()*(transaction.getCommission()/100.0f)))
+                .price(transaction.getPrice())
                 .totalPrice(transaction.getTotalPrice())
                 .player(PlayerRepresentDTO.from(transaction.getPlayer()))
                 .fromTeam(transaction.getFromTeam() != null ? TeamDTO.from(transaction.getFromTeam()) : null)

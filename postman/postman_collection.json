@@ -16,7 +16,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/team/5",
+							"raw": "localhost:8080/api/team/2",
 							"host": [
 								"localhost"
 							],
@@ -24,7 +24,7 @@
 							"path": [
 								"api",
 								"team",
-								"5"
+								"2"
 							]
 						}
 					},
@@ -56,7 +56,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"commission\": 5,\n    \"budget\": 1000,\n    \"club_name\": \"United\",\n    \"founder\": \"Richard\",\n    \"founded\": \"2017-09-24\"\n}",
+							"raw": "{\n    \"commission\": 5,\n    \"budget\": 10000,\n    \"club_name\": \"United\",\n    \"founder\": \"Richard\",\n    \"founded\": \"2017-09-24\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -84,7 +84,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"budget\": 3514280\n}",
+							"raw": "{\n    \"budget\": 3514280,\n    \"commission\": 8\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -112,7 +112,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/team/3",
+							"raw": "localhost:8080/api/team/4",
 							"host": [
 								"localhost"
 							],
@@ -120,7 +120,7 @@
 							"path": [
 								"api",
 								"team",
-								"3"
+								"4"
 							]
 						}
 					},
@@ -214,7 +214,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/player/5",
+							"raw": "localhost:8080/api/player/3",
 							"host": [
 								"localhost"
 							],
@@ -222,7 +222,7 @@
 							"path": [
 								"api",
 								"player",
-								"5"
+								"3"
 							]
 						}
 					},
@@ -290,7 +290,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/api/player/10",
+							"raw": "localhost:8080/api/player/7",
 							"host": [
 								"localhost"
 							],
@@ -298,7 +298,7 @@
 							"path": [
 								"api",
 								"player",
-								"10"
+								"7"
 							]
 						}
 					},
@@ -310,7 +310,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/player/1",
+							"raw": "localhost:8080/api/player/7",
 							"host": [
 								"localhost"
 							],
@@ -318,7 +318,7 @@
 							"path": [
 								"api",
 								"player",
-								"1"
+								"7"
 							]
 						}
 					},
@@ -358,7 +358,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/player/1",
+							"raw": "localhost:8080/api/player/1002",
 							"host": [
 								"localhost"
 							],
@@ -366,7 +366,7 @@
 							"path": [
 								"api",
 								"player",
-								"1"
+								"1002"
 							]
 						}
 					},
@@ -383,7 +383,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/manager?playerId=1&transferToTeamId=2",
+							"raw": "localhost:8080/api/manager?playerId=3&transferToTeamId=2",
 							"host": [
 								"localhost"
 							],
@@ -395,7 +395,7 @@
 							"query": [
 								{
 									"key": "playerId",
-									"value": "1"
+									"value": "3"
 								},
 								{
 									"key": "transferToTeamId",
@@ -412,7 +412,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/manager/?billId=02230ae0-66ab-4b72-b7de-a9eadd95c911",
+							"raw": "localhost:8080/api/manager/?billId=d605321f-60bc-4a74-a7b7-e9ddc636af03",
 							"host": [
 								"localhost"
 							],
@@ -425,7 +425,7 @@
 							"query": [
 								{
 									"key": "billId",
-									"value": "02230ae0-66ab-4b72-b7de-a9eadd95c911"
+									"value": "d605321f-60bc-4a74-a7b7-e9ddc636af03"
 								}
 							]
 						}
@@ -438,7 +438,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/api/manager/history/4",
+							"raw": "localhost:8080/api/manager/history/2",
 							"host": [
 								"localhost"
 							],
@@ -447,7 +447,7 @@
 								"api",
 								"manager",
 								"history",
-								"4"
+								"2"
 							]
 						}
 					},
