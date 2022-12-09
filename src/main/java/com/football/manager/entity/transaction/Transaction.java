@@ -22,7 +22,7 @@ public class Transaction implements Serializable {
     @Id
     private UUID id;
 
-    private float paid;
+    private int paid;
 
     private float commission;
 

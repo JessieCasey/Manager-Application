@@ -5,7 +5,6 @@ import com.football.manager.entity.player.Player;
 import com.football.manager.entity.team.dto.TeamCreateDTO;
 import com.football.manager.entity.transaction.Transaction;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -40,10 +39,10 @@ public class Team implements Serializable {
 
     @Min(0)
     @Max(10)
-    private int commission;
+    private float commission;
 
     @Column(nullable = true)
-    private float budget;
+    private int budget;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

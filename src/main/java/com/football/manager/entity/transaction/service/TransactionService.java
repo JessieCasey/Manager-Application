@@ -11,4 +11,6 @@ public interface TransactionService {
     Transaction saveTransaction(Transaction trans);
 
     Transaction getTransaction(UUID id);
+
+    void deleteById(UUID id);
 }

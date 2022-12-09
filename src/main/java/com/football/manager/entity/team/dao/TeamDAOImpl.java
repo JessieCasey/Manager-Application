@@ -1,9 +1,11 @@
 package com.football.manager.entity.team.dao;
 
+import com.football.manager.entity.bill.service.BillService;
 import com.football.manager.entity.player.Player;
 import com.football.manager.entity.player.service.PlayerService;
 import com.football.manager.entity.team.Team;
 import com.football.manager.entity.team.dto.TeamDeletedDTO;
+import com.football.manager.entity.transaction.service.TransactionService;
 import com.football.manager.exception.EntityAlreadyExistException;
 import com.football.manager.exception.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +24,14 @@ public class TeamDAOImpl implements TeamDAO {
 
     private final HibernateTemplate hibernateTemplate;
     private final PlayerService playerService;
-
+    private final BillService billService;
+    private final TransactionService transactionService;
     @Autowired
-    public TeamDAOImpl(HibernateTemplate hibernateTemplate, PlayerService playerService) {
+    public TeamDAOImpl(HibernateTemplate hibernateTemplate, PlayerService playerService, BillService billService, TransactionService transactionService) {
         this.hibernateTemplate = hibernateTemplate;
         this.playerService = playerService;
+        this.billService = billService;
+        this.transactionService = transactionService;
     }
 
     @Override
@@ -40,16 +45,10 @@ public class TeamDAOImpl implements TeamDAO {
 
     @Override
     public Team saveTeam(Team teamToBeSaved) {
-        Query<Team> query = hibernateTemplate
-                .getSessionFactory()
-                .getCurrentSession().createQuery("from Team u where u.clubName=:clubName", Team.class);
-        query.setParameter("clubName", teamToBeSaved.getClubName());
-        Team byName = query.uniqueResult();
-        if (byName != null)
-            throw new EntityAlreadyExistException("Team with the clubName '" + byName.getClubName() + "'" + " is already exist");
+        if (existByClubName(teamToBeSaved.getClubName()))
+            throw new EntityAlreadyExistException("Team is already exist with the clubName '" + teamToBeSaved.getClubName() + "'");
         else
             hibernateTemplate.persist(teamToBeSaved);
-
         return teamToBeSaved;
     }
 
@@ -70,7 +69,7 @@ public class TeamDAOImpl implements TeamDAO {
         query.setParameter("clubName", clubName);
         Team byName = query.uniqueResult();
         if (byName == null)
-            throw new EntityAlreadyExistException("Team with the clubName '" + clubName + "'" + " is already exist");
+            throw new EntityAlreadyExistException("Team with the clubName '" + clubName + "'" + " is not found");
         else
             return byName;
     }
@@ -85,10 +84,24 @@ public class TeamDAOImpl implements TeamDAO {
                 x.setMotherClub(null);
                 x.getClubsPlayed().remove(team);
             });
+            // bill
+            // transaction
+            team.getBills().forEach(x -> billService.deleteBill(x.getId()));
+            team.getTransactions().forEach(x -> transactionService.deleteById(x.getId()));
+            team.getTransactions().clear();
             hibernateTemplate.delete(team);
             return dto;
         } else
             throw new EntityNotFoundException("Team with id '" + id + "'" + " is not found");
     }
 
+    @Override
+    public boolean existByClubName(String name) {
+        Query<Team> query = Objects.requireNonNull(hibernateTemplate
+                        .getSessionFactory())
+                .getCurrentSession().createQuery("from Team u where u.clubName=:clubName", Team.class);
+        query.setParameter("clubName", name);
+        Team byName = query.uniqueResult();
+        return byName != null;
+    }
 }

@@ -35,4 +35,8 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionDAO.getTransaction(id);
     }
 
+    @Override
+    public void deleteById(UUID id) {
+        transactionDAO.deleteById(id);
+    }
 }

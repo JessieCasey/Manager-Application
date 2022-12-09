@@ -16,4 +16,6 @@ public interface TeamDAO {
 
     Team getTeamByClubName(String title);
 
+    boolean existByClubName(String name);
+
 }

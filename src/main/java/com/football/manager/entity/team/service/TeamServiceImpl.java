@@ -37,6 +37,9 @@ public class TeamServiceImpl implements TeamService {
     @Override
     @Transactional
     public Team updateTeam(TeamUpdateDTO updateDTO) {
+        boolean existByClubName = teamDAO.existByClubName(updateDTO.getClubName());
+        if (existByClubName)
+            throw new IllegalArgumentException("Team is already exist with the clubName '" + updateDTO.getClubName() + "', try to use different one");
         Team team = teamDAO.getTeam(updateDTO.getId());
         if (!(updateDTO.getCommission() < 0))
             team.setCommission(updateDTO.getCommission());

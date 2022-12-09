@@ -17,7 +17,7 @@ public class TeamHistoryDTO {
     @JsonProperty("club_name")
     private String clubName;
     @JsonProperty("club_commission")
-    private int commission;
+    private float commission;
 
     private float budget;
     @JsonProperty("bills_to_pay")

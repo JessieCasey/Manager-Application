@@ -24,9 +24,9 @@ public class Bill {
 
     private int price;
 
-    private int commission;
+    private float commission;
 
-    private float totalPrice;
+    private int totalPrice;
 
     private LocalDateTime createdAt;
     private LocalDateTime expiredAt;
@@ -44,7 +44,7 @@ public class Bill {
                 .id(UUID.randomUUID())
                 .price(priceOfPlayer)
                 .commission(from.getCommission())
-                .totalPrice(priceOfPlayer + (from.getCommission() * priceOfPlayer))
+                .totalPrice((int) (priceOfPlayer + (from.getCommission() * priceOfPlayer)))
                 .createdAt(LocalDateTime.now())
                 .expiredAt(LocalDateTime.now().plusMonths(6))
                 .player(player)

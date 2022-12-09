@@ -23,7 +23,7 @@ public class PlayerRepresentDTO extends PlayerDTO {
     public static PlayerRepresentDTO from(Player player) {
         return builder()
                 .clubsPlayed(player.getClubsPlayed() == null ? 0 : player.getClubsPlayed().size())
-                .motherClub(player.getMotherClub() == null ? "No club" : player.getMotherClub().getClubName())
+                .motherClub(player.getMotherClub() == null ? null : player.getMotherClub().getClubName())
                 .id(player.getId())
                 .arrivalDate(player.getArrivalDate())
                 .firstName(player.getFirstName())

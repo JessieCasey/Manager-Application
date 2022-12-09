@@ -14,7 +14,7 @@ public class TeamCreateDTO {
     private String clubName;
     private String founder;
     private LocalDate founded;
-    private float budget;
+    private int budget;
     private int commission;
 
 }

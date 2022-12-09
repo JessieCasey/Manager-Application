@@ -40,7 +40,6 @@ public class BillDAOImpl implements BillDAO {
     public Bill getBill(UUID id) {
         Bill bill = hibernateTemplate.get(Bill.class, id);
         if (bill != null)
-
             return bill;
         else
             throw new EntityNotFoundException("Bill with id '" + id + "'" + " is not found");

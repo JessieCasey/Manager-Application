@@ -17,7 +17,7 @@ public class TransactionRepresentDTO {
 
     private UUID id;
 
-    private float paid;
+    private int paid;
     private float commission;
     private PlayerRepresentDTO player;
 

@@ -19,9 +19,9 @@ public class BillRepresentDTO {
 
     private int price;
 
-    private int commission;
+    private float commission;
 
-    private float totalPrice;
+    private int totalPrice;
 
     private LocalDateTime createdAt;
     private LocalDateTime expiredAt;

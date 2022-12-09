@@ -44,4 +44,13 @@ public class TransactionDAOImpl implements TransactionDAO {
         else
             throw new EntityNotFoundException("Transaction with id '" + id + "'" + " is not found");
     }
+
+    @Override
+    public void deleteById(UUID id) {
+        Transaction transaction = hibernateTemplate.get(Transaction.class, id);
+        if (null != transaction) {
+            hibernateTemplate.delete(transaction);
+        } else
+            throw new EntityNotFoundException("Transaction with id '" + id + "'" + " is not found");
+    }
 }

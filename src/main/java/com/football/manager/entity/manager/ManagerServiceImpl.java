@@ -10,6 +10,7 @@ import com.football.manager.entity.team.service.TeamService;
 import com.football.manager.entity.transaction.Transaction;
 import com.football.manager.entity.transaction.TransactionRepresentDTO;
 import com.football.manager.entity.transaction.service.TransactionService;
+import com.football.manager.exception.EntityNotFoundException;
 import com.football.manager.exception.PaymentDeclinedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,11 @@ public class ManagerServiceImpl implements ManagerService {
     @Transactional
     public BillRepresentDTO makeAndSendBill(int playerId, int transferToTeamId) {
         Player player = playerService.getPlayer(playerId);
-        int size = player.getClubsPlayed().size();
 
+        if (player == null)
+            throw new EntityNotFoundException("Player is not found with id '" + playerId + "'");
+
+        int size = player.getClubsPlayed().size();
         Team fromTeam = (size > 0) ? player.getClubsPlayed().get(size - 1) : null;
 
         Team toTeam = teamService.getTeam(transferToTeamId);

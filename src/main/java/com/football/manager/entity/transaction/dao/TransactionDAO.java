@@ -11,4 +11,6 @@ public interface TransactionDAO {
     Transaction saveTransaction(Transaction team);
 
     Transaction getTransaction(UUID id);
+
+    void deleteById(UUID id);
 }

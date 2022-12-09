@@ -1,9 +1,9 @@
-INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (1, 'Manchester United F.C.', 'Lancashire and Yorkshire Railway', '1878-01-14', 8, 341450120);
-INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (2, 'Real Madrid', 'Adolfo Melendez', '1902-04-6', 10, 541420720);
-INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (3, 'F.C. Barcelona', 'Joan Gamper', '1899-12-29', 9, 83145012);
+INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (1, 'Manchester United F.C.', 'Lancashire and Yorkshire Railway', '1878-01-14', 8, 13000000);
+INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (2, 'Real Madrid', 'Adolfo Melendez', '1902-04-6', 10, 5414207);
+INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (3, 'F.C. Barcelona', 'Joan Gamper', '1899-12-29', 9, 831450);
 INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (4, 'Bayern Munich', 'Franz John', '1900-02-27', 6, 450687);
-INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (5, 'Liverpool', 'John Houlding', '1892-06-18', 3, 12504232);
-INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (6, 'Paris Saint Germain', 'Henri Patrelle', '1970-04-19', 4, 141450120);
+INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (5, 'Liverpool', 'John Houlding', '1892-06-18', 3, 125042);
+INSERT INTO TEAM (id, club_name, founder, founded_date, commission, budget) values (6, 'Paris Saint Germain', 'Henri Patrelle', '1970-04-19', 4, 1414501);
 
 INSERT INTO PLAYER (id, firstname, lastname, nationality, monthsExperience, birthday, arrival_date, position, motherClub_id) VALUES (1, 'Lionel', 'Messi', 'Argentina', 123, '1987-06-24', '2020-01-20', 'FORWARD', 3);
 INSERT INTO PLAYER (id, firstname, lastname, nationality, monthsExperience, birthday, arrival_date, position, motherClub_id) VALUES (2, 'Cristiano', 'Ronaldo', 'Portugal', 150, '1985-02-05', '2018-10-03', 'FORWARD', 2);

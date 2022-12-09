@@ -3,9 +3,6 @@ package com.football.manager.entity.player;
 import com.football.manager.entity.player.dto.PlayerCreateDTO;
 import com.football.manager.entity.team.Team;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
