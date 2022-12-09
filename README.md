@@ -37,7 +37,6 @@ hibernate.hbm2ddl.auto=create
 That's all, you need to run Application class in your IDE.
 
 ```java
-
 @SpringBootApplication
 public class ManagerApplication {
     //...
