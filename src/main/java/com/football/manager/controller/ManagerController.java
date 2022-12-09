@@ -36,6 +36,15 @@ public class ManagerController {
         this.managerService = managerService;
     }
 
+    /**
+     * Method that creating and return the bill to the team
+     * (Every team has its own 'wallet', which can be used to make payment)
+     *
+     * @param playerId ID of the player to be transferred
+     * @param transferToTeamId ID of the team to be player moved
+     *
+     * @return BillRepresentDTO object in case of success and send it automatically to the team. {@link BillRepresentDTO}
+     */
     @GetMapping
     public ResponseEntity<?> getBill(@RequestParam int playerId, @RequestParam int transferToTeamId, WebRequest request) {
         log.info("[GET] Request to 'getBill'");
@@ -49,6 +58,14 @@ public class ManagerController {
         }
     }
 
+    /**
+     * Method that making payment and return the transaction (receipt) to the team
+     * (Every necessary information is included in the bill to make payment automatically)
+     *
+     * @param billId ID of the bill to be paid by the team {@link UUID}
+     *
+     * @return TransactionRepresentDTO object in case of success and send it automatically to the team. {@link TransactionRepresentDTO}
+     */
     @PostMapping
     public ResponseEntity<?> payBill(@RequestParam UUID billId, WebRequest request) {
         log.info("[POST] Request to 'payBill'");
@@ -61,6 +78,14 @@ public class ManagerController {
         }
     }
 
+    /**
+     * Method that fetching history of payments
+     * (To discover the latest payment details)
+     *
+     * @param teamId ID of the team
+     *
+     * @return TeamHistoryDTO object in case of success. {@link TeamHistoryDTO}
+     */
     @GetMapping("/history/{teamId}")
     public ResponseEntity<?> getHistory(@PathVariable int teamId, WebRequest request) {
         log.info("[POST] Request to 'getHistory'");
