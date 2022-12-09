@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The TeamDAOImpl class implements TeamDAO interface to create methods {@link TeamDAO}
+ */
+
 @Repository
 @Slf4j
 public class TeamDAOImpl implements TeamDAO {

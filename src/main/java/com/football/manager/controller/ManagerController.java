@@ -1,5 +1,6 @@
 package com.football.manager.controller;
 
+import com.football.manager.entity.bill.Bill;
 import com.football.manager.entity.bill.BillRepresentDTO;
 import com.football.manager.entity.manager.ManagerService;
 import com.football.manager.entity.manager.TeamHistoryDTO;
@@ -14,6 +15,11 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.UUID;
 
+/**
+ * The ManagerController is required to transfer players between teams.
+ * To transfer player it needs to pay the bill {@link Bill}
+ */
+
 @RestController
 @RequestMapping("api/manager")
 @Slf4j
@@ -21,6 +27,10 @@ public class ManagerController {
 
     private final ManagerService managerService;
 
+    /**
+     * Constructor for {@link ManagerController}.
+     * @param managerService  {@link ManagerService}
+     */
     @Autowired
     public ManagerController(ManagerService managerService) {
         this.managerService = managerService;

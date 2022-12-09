@@ -1,7 +1,7 @@
 package com.football.manager.entity.bill.dao;
 
 import com.football.manager.entity.bill.Bill;
-import com.football.manager.entity.bill.DeletedBillDTO;
+import com.football.manager.entity.bill.BillDeletedDTO;
 import com.football.manager.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+/**
+ * The BillDAOImpl class implements BillDAO interface to create methods {@link BillDAO}
+ */
 
 @Repository
 public class BillDAOImpl implements BillDAO {
@@ -46,10 +50,10 @@ public class BillDAOImpl implements BillDAO {
     }
 
     @Override
-    public DeletedBillDTO deleteBill(UUID id) {
+    public BillDeletedDTO deleteBill(UUID id) {
         Bill billToBeDeleted = hibernateTemplate.get(Bill.class, id);
         if (null != billToBeDeleted) {
-            DeletedBillDTO dto = DeletedBillDTO.from(billToBeDeleted);
+            BillDeletedDTO dto = BillDeletedDTO.from(billToBeDeleted);
             hibernateTemplate.delete(billToBeDeleted);
             return dto;
         } else

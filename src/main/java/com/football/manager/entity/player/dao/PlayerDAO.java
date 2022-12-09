@@ -5,6 +5,9 @@ import com.football.manager.entity.player.dto.PlayerDeletedDTO;
 
 import java.util.List;
 
+/**
+ * The PlayerDAO interface {@link Player}
+ */
 public interface PlayerDAO {
     List<Player> getPlayers();
 

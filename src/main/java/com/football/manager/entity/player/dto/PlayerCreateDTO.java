@@ -6,6 +6,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * The PlayerCreateDTO class is required if we want to create the player entity.
+ */
+
 @Getter
 @Setter
 public class PlayerCreateDTO {

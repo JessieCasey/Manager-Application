@@ -5,13 +5,15 @@ import com.football.manager.entity.bill.BillRepresentDTO;
 import com.football.manager.entity.team.Team;
 import com.football.manager.entity.transaction.TransactionRepresentDTO;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Builder
-@Data
+@Getter
+@Setter
 public class TeamHistoryDTO {
     private int id;
     @JsonProperty("club_name")

@@ -7,6 +7,7 @@ import com.football.manager.entity.team.Team;
 import com.football.manager.entity.team.service.TeamService;
 import com.football.manager.exception.MessageResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * The PlayerController is required to operate with basic CRUD operations {@link Player}
+ */
+
 @RestController
 @RequestMapping("api/player")
 @Slf4j
@@ -24,31 +29,42 @@ public class PlayerController {
     private final PlayerService playerService;
     private final TeamService teamService;
 
+    /**
+     * Constructor for {@link PlayerController}.
+     * @param playerService  {@link PlayerService}
+     * @param teamService      {@link TeamService}
+     */
+    @Autowired
     public PlayerController(PlayerService playerService, TeamService teamService) {
         this.playerService = playerService;
         this.teamService = teamService;
     }
 
+    /**
+     * Method that fetching players
+     * @return List<PlayerRepresentDTO> object in case of success. {@link List<PlayerRepresentDTO>}
+     */
     @GetMapping
     public ResponseEntity<?> fetchPlayers(WebRequest request) {
         log.info("[GET] Request to 'fetchPlayers'");
         try {
             List<Player> players = playerService.getPlayers();
-
-            Object content;
             if (players.size() != 0) {
-                content = players.stream().map(PlayerRepresentDTO::from);
+                return ResponseEntity.ok().body(players.stream().map(PlayerRepresentDTO::from));
             } else {
-                content = new MessageResponse(200, "There are no players in database", request);
+                return ResponseEntity.ok().body(new MessageResponse(200, "There are no players in database", request));
             }
-            return ResponseEntity.ok().body(content);
-
         } catch (Exception e) {
             log.error("Error in method 'fetchPlayers': " + e.getMessage());
             return ResponseEntity.badRequest().body(new MessageResponse(e.getMessage(), request));
         }
     }
 
+    /**
+     * Method that fetching player by ID
+     * @return PlayerDetailedDTO object in case of success. {@link PlayerDetailedDTO}
+     * PlayerDetailedDTO contains more details than PlayerRepresentDTO
+     */
     @GetMapping("/{playerId}")
     public ResponseEntity<?> fetchPLayerById(@PathVariable int playerId, WebRequest request) {
         log.info("[GET] Request to 'fetchPLayerById'");
@@ -68,6 +84,10 @@ public class PlayerController {
         }
     }
 
+    /**
+     * Method that creating player by PlayerCreateDTO {@link PlayerCreateDTO}
+     * @return PlayerRepresentDTO object in case of success
+     */
     @PostMapping
     public ResponseEntity<?> createPlayer(@RequestBody PlayerCreateDTO playerDTO, WebRequest request) {
         log.info("[POST] Request to 'createPlayer'");
@@ -88,14 +108,19 @@ public class PlayerController {
         }
     }
 
-    @PutMapping("/{teamId}")
+    /**
+     * Method that updating player by PlayerCreateDTO {@link PlayerUpdateDTO}
+     * @param playerID id of the player to be updated
+     * @param updateDTO DTO to transfer data {@link PlayerUpdateDTO}
+     * @return PlayerRepresentDTO object in case of success
+     */
+    @PutMapping("/{playerID}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> updatePlayer(@PathVariable int teamId,
-                                        @RequestBody PlayerUpdateDTO updateDTO,
-                                        WebRequest request) {
+    public ResponseEntity<?> updatePlayer(@PathVariable int playerID, @RequestBody PlayerUpdateDTO updateDTO,
+                                          WebRequest request) {
         log.info("[PUT] Request to 'updatePlayer'");
         try {
-            updateDTO.setId(teamId);
+            updateDTO.setId(playerID);
             Player player = playerService.updatePlayer(updateDTO);
 
             URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -111,11 +136,16 @@ public class PlayerController {
         }
     }
 
-    @DeleteMapping("/{playerId}")
-    public ResponseEntity<?> deletePlayer(@PathVariable int playerId, WebRequest request) {
+    /**
+     * Method that deleting player
+     * @param playerID id of the player to be updated
+     * @return PlayerDeletedDTO object in case of success
+     */
+    @DeleteMapping("/{playerID}")
+    public ResponseEntity<?> deletePlayer(@PathVariable int playerID, WebRequest request) {
         log.info("[DELETE] Request to 'deletePlayer'");
         try {
-            PlayerDeletedDTO dto = playerService.deletePlayer(playerId);
+            PlayerDeletedDTO dto = playerService.deletePlayer(playerID);
 
             log.info("[DELETE] Request to 'deletePlayer': Player is deleted");
             return ResponseEntity.status(HttpStatus.OK).body(dto);

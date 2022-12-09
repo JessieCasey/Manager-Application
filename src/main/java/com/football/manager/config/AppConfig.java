@@ -14,6 +14,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * The AppConfig class is required to init sessionFactory.
+ */
+
 @Configuration
 @ComponentScan(basePackages = {"com.football.manager"})
 @PropertySource("classpath:application.properties")

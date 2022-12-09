@@ -12,6 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The PlayerServiceImpl class implements PlayerService interface to create methods {@link PlayerService}
+ */
+
 @Service
 @Slf4j
 public class PlayerServiceImpl implements PlayerService {

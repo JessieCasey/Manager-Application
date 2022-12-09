@@ -1,10 +1,14 @@
 package com.football.manager.entity.bill.service;
 
 import com.football.manager.entity.bill.Bill;
-import com.football.manager.entity.bill.DeletedBillDTO;
+import com.football.manager.entity.bill.BillDeletedDTO;
 
 import java.util.List;
 import java.util.UUID;
+
+/**
+ * The BillService interface {@link Bill}
+ */
 
 public interface BillService {
     List<Bill> getBills();
@@ -13,5 +17,5 @@ public interface BillService {
 
     Bill getBill(UUID id);
 
-    DeletedBillDTO deleteBill(UUID id);
+    BillDeletedDTO deleteBill(UUID id);
 }

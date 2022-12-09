@@ -6,21 +6,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Builder
-public class DeletedBillDTO {
-    @Id
+public class BillDeletedDTO {
+
     private UUID id;
-
     private int price;
-
     private float commission;
-
     private int totalPrice;
 
     private LocalDateTime createdAt;
@@ -34,7 +30,7 @@ public class DeletedBillDTO {
 
     private LocalDateTime deletedAt;
 
-    public static DeletedBillDTO from(Bill bill) {
+    public static BillDeletedDTO from(Bill bill) {
         return builder()
                 .id(UUID.randomUUID())
                 .price(bill.getPrice())

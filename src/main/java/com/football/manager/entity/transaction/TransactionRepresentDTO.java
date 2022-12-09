@@ -10,6 +10,10 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * The TransactionRepresentDTO class is required if we want to represent the transaction entity in flexible format.
+ */
+
 @Getter
 @Setter
 @Builder

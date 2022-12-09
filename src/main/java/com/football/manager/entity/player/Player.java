@@ -9,11 +9,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+
 /**
- * Entity bean with JPA annotations
- * Hibernate provides JPA implementation
- *
- * @author Artem
+ * The Player entity
  */
 
 @Getter
@@ -48,7 +46,6 @@ public class Player implements Serializable {
     private Position position;
 
     @ManyToMany(mappedBy = "players", fetch = FetchType.EAGER)
-//    @Fetch(value = FetchMode.SUBSELECT)
     private List<Team> clubsPlayed;
 
     @OneToOne(fetch = FetchType.EAGER)

@@ -1,5 +1,6 @@
 package com.football.manager.entity.team.service;
 
+import com.football.manager.entity.player.service.PlayerService;
 import com.football.manager.entity.team.Team;
 import com.football.manager.entity.team.dao.TeamDAO;
 import com.football.manager.entity.team.dto.TeamDeletedDTO;
@@ -9,6 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+/**
+ * The TeamServiceImpl class implements TeamService interface to create methods {@link TeamService}
+ */
 
 @Service
 public class TeamServiceImpl implements TeamService {

@@ -1,7 +1,7 @@
 package com.football.manager.entity.bill.service;
 
 import com.football.manager.entity.bill.Bill;
-import com.football.manager.entity.bill.DeletedBillDTO;
+import com.football.manager.entity.bill.BillDeletedDTO;
 import com.football.manager.entity.bill.dao.BillDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+
+/**
+ * The BillServiceImpl class implements BillService interface to create methods {@link BillService}
+ */
 
 @Service
 public class BillServiceImpl implements BillService {
@@ -38,7 +42,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     @Transactional
-    public DeletedBillDTO deleteBill(UUID id) {
+    public BillDeletedDTO deleteBill(UUID id) {
         return billDAO.deleteBill(id);
     }
 }

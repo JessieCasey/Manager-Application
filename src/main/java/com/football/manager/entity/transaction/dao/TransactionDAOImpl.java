@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The TransactionDAOImpl class implements TransactionDAO interface to create methods {@link TransactionDAO}
+ */
+
 @Repository
 public class TransactionDAOImpl implements TransactionDAO {
 

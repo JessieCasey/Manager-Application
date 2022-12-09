@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+/**
+ * GlobalExceptionHandler handles exceptions
+ */
+
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

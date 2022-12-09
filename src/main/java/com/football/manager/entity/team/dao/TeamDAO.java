@@ -5,6 +5,10 @@ import com.football.manager.entity.team.dto.TeamDeletedDTO;
 
 import java.util.List;
 
+/**
+ * The TeamDAO interface {@link Team}
+ */
+
 public interface TeamDAO {
     List<Team> getTeams();
 

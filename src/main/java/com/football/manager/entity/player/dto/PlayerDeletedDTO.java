@@ -10,6 +10,10 @@ import lombok.experimental.SuperBuilder;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The PlayerDeletedDTO class is required if we want to delete the player.
+ */
+
 @SuperBuilder
 @Getter
 @Setter

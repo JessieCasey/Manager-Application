@@ -16,6 +16,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Team entity
+ */
+
+
 @Getter
 @Setter
 @Entity

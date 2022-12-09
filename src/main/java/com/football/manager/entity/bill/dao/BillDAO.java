@@ -1,10 +1,14 @@
 package com.football.manager.entity.bill.dao;
 
 import com.football.manager.entity.bill.Bill;
-import com.football.manager.entity.bill.DeletedBillDTO;
+import com.football.manager.entity.bill.BillDeletedDTO;
 
 import java.util.List;
 import java.util.UUID;
+
+/**
+ * The BillDAO interface {@link Bill}
+ */
 
 public interface BillDAO {
     List<Bill> getBills();
@@ -13,5 +17,5 @@ public interface BillDAO {
 
     Bill getBill(UUID id);
 
-    DeletedBillDTO deleteBill(UUID id);
+    BillDeletedDTO deleteBill(UUID id);
 }

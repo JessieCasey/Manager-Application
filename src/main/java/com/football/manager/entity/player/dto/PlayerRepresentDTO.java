@@ -9,6 +9,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+/**
+ * The PlayerRepresentDTO class is required if we want to represent the player entity in flexible format.
+ */
 @SuperBuilder
 @Getter
 @Setter

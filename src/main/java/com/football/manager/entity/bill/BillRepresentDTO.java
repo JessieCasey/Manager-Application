@@ -6,21 +6,21 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+/**
+ * The BillRepresentDTO class is required if we want to represent the bill entity in flexible format.
+ */
 
 @Getter
 @Setter
 @Builder
 public class BillRepresentDTO {
-    @Id
+
     private UUID id;
-
     private int price;
-
     private float commission;
-
     private int totalPrice;
 
     private LocalDateTime createdAt;

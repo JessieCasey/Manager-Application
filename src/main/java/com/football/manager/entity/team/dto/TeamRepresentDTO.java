@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The TeamRepresentDTO class is required if we want to represent the team entity in flexible format.
+ */
+
 @SuperBuilder
 @Getter
 @Setter

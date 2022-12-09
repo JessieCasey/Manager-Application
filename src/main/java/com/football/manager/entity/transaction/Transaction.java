@@ -10,6 +10,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * The Transaction entity
+ */
+
+
 @Getter
 @Setter
 @Entity
@@ -23,7 +28,6 @@ public class Transaction implements Serializable {
     private UUID id;
 
     private int paid;
-
     private float commission;
 
     @OneToOne(fetch = FetchType.EAGER)

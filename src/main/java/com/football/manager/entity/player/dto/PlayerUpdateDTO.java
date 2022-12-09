@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * The PlayerUpdateDTO class is required to update player
+ */
+
 @Getter
 @Setter
 @ToString

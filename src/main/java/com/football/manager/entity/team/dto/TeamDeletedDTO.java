@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * The TeamDeletedDTO class is required if we want to delete the team.
+ */
+
 @SuperBuilder
 @Getter
 @Setter

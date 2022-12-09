@@ -6,6 +6,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * The TeamCreateDTO class is required if we want to create the team.
+ */
+
 @Getter
 @Setter
 public class TeamCreateDTO {

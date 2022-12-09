@@ -1,10 +1,15 @@
 package com.football.manager.entity.team.service;
 
+import com.football.manager.entity.player.service.PlayerServiceImpl;
 import com.football.manager.entity.team.Team;
 import com.football.manager.entity.team.dto.TeamDeletedDTO;
 import com.football.manager.entity.team.dto.TeamUpdateDTO;
 
 import java.util.List;
+
+/**
+ * The TeamService interface is required to create TeamServiceImpl {@link TeamServiceImpl}
+ */
 
 public interface TeamService {
     List<Team> getTeams();

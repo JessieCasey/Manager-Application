@@ -13,6 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The PlayerRepresentDTO class is required if we want to represent the player entity in more detailed way.
+ */
+
 @SuperBuilder
 @Getter
 @Setter

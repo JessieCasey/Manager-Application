@@ -28,7 +28,6 @@ public class ManagerServiceImpl implements ManagerService {
     private final BillService billService;
     private final TransactionService transactionService;
 
-
     @Autowired
     public ManagerServiceImpl(PlayerService playerService, TeamService teamService, BillService billService, TransactionService transactionService) {
         this.playerService = playerService;
@@ -47,7 +46,6 @@ public class ManagerServiceImpl implements ManagerService {
 
         int size = player.getClubsPlayed().size();
         Team fromTeam = (size > 0) ? player.getClubsPlayed().get(size - 1) : null;
-
         Team toTeam = teamService.getTeam(transferToTeamId);
 
         if (fromTeam != null) {
@@ -88,17 +86,14 @@ public class ManagerServiceImpl implements ManagerService {
             fromTeam.setBudget(fromTeam.getBudget() + bill.getTotalPrice());
 
             toTeam.getBills().remove(bill);
-
             Transaction transaction = transactionService.saveTransaction(Transaction.from(bill));
             toTeam.getTransactions().add(transaction);
 
             player.getClubsPlayed().add(toTeam);
             billService.deleteBill(billId);
             return TransactionRepresentDTO.from(transaction);
-        } else {
+        } else
             throw new PaymentDeclinedException("Payment is declined: there are not enough funds in the account");
-        }
-
     }
 
     @Override

@@ -11,6 +11,10 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * The Bill entity
+ */
+
 @Getter
 @Setter
 @Entity
@@ -21,11 +25,8 @@ import java.util.UUID;
 public class Bill {
     @Id
     private UUID id;
-
     private int price;
-
     private float commission;
-
     private int totalPrice;
 
     private LocalDateTime createdAt;

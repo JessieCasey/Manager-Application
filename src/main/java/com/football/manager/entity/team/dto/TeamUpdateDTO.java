@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The TeamUpdateDTO class is required to update team
+ */
 @Getter
 @Setter
 public class TeamUpdateDTO {

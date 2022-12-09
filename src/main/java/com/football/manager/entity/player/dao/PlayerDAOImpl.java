@@ -16,6 +16,10 @@ import java.util.List;
 
 import static com.football.manager.entity.player.service.PlayerService.getCurrentTeamId;
 
+/**
+ * The PlayerDAOImpl class implements PlayerDAO interface to create methods {@link PlayerDAO}
+ */
+
 @Repository
 @Slf4j
 public class PlayerDAOImpl implements PlayerDAO {

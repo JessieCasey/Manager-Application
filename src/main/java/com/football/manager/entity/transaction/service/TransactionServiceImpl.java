@@ -1,5 +1,6 @@
 package com.football.manager.entity.transaction.service;
 
+import com.football.manager.entity.team.service.TeamService;
 import com.football.manager.entity.transaction.Transaction;
 import com.football.manager.entity.transaction.dao.TransactionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+
+/**
+ * The TransactionServiceImpl class implements TransactionService interface to create methods {@link TransactionService}
+ */
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
