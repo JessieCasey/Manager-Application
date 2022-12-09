@@ -49,3 +49,7 @@ The project is already include all pre-data you need to test the application,
 so you could avoid creating players and teams to work with. 
 
 `import.sql` includes the data you need to test it
+
+`https://api.postman.com/collections/18627038-4c49ef96-63cf-482b-b5ce-86d058e15f53?access_key=PMAT-01GKVD8H796P5PG5HC4ZPTPK0B`
+
+[Link](https://api.postman.com/collections/18627038-4c49ef96-63cf-482b-b5ce-86d058e15f53?access_key=PMAT-01GKVD8H796P5PG5HC4ZPTPK0B) (api.postman.com)
