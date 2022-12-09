@@ -18,7 +18,7 @@ import java.util.UUID;
 
 /**
  * The ManagerController is required to transfer players between teams.
- * To transfer player it needs to pay the bill {@link Bill}
+ * In order to transfer the player it needs to pay the bill first {@link Bill}
  * result of the payment is transaction (receipt) {@link Transaction}
  */
 
