@@ -48,7 +48,7 @@ public class ManagerApplication {
 The project is already include all pre-data you need to test the application,
 so you could avoid creating players and teams to work with. 
 
-`import.sql` includes the data you need to test it
+`import.sql` includes the all data you need
 
 ### How to transfer player
 Firstly, you need to make a bill. (I'll transfer player with id '3' to the team id with '2')
