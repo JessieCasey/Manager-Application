@@ -39,8 +39,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) {
         log.error("[handlePaymentDeclinedException]: " + request.getDescription(false));
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE.value())
-                .body(new MessageResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage(), request));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value())
+                .body(new MessageResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request));
     }
 
     @ExceptionHandler
