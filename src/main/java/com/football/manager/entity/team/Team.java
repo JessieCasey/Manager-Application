@@ -20,7 +20,6 @@ import java.util.List;
  * The Team entity
  */
 
-
 @Getter
 @Setter
 @Entity
@@ -52,8 +51,8 @@ public class Team implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "TEAM_PLAYER",
-            joinColumns = {@JoinColumn(name = "Team_id")},
-            inverseJoinColumns = {@JoinColumn(name = "players_id")}
+            joinColumns = {@JoinColumn(name = "team_id")},
+            inverseJoinColumns = {@JoinColumn(name = "player_id")}
     )
     private List<Player> players = new ArrayList<>();
 

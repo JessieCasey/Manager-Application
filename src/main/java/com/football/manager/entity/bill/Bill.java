@@ -27,16 +27,22 @@ public class Bill {
     private UUID id;
     private int price;
     private float commission;
+    @Column(name = "total_price")
     private int totalPrice;
 
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Column(name = "expired_at")
     private LocalDateTime expiredAt;
 
     @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "player_id")
     private Player player;
     @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "from_team_id")
     private Team fromTeam;
     @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "to_team_id")
     private Team toTeam;
 
     public static Bill from(Player player, Team from, Team to) {
