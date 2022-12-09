@@ -4,6 +4,7 @@ import com.football.manager.entity.bill.Bill;
 import com.football.manager.entity.bill.BillRepresentDTO;
 import com.football.manager.entity.manager.ManagerService;
 import com.football.manager.entity.manager.TeamHistoryDTO;
+import com.football.manager.entity.transaction.Transaction;
 import com.football.manager.entity.transaction.TransactionRepresentDTO;
 import com.football.manager.exception.MessageResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import java.util.UUID;
 /**
  * The ManagerController is required to transfer players between teams.
  * To transfer player it needs to pay the bill {@link Bill}
+ * result of the payment is transaction (receipt) {@link Transaction}
  */
 
 @RestController
